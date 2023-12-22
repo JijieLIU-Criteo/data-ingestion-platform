@@ -4,8 +4,8 @@ from temporalio.client import Client
 from temporalio.worker import Worker
 
 
-from poc.activities import say_hello
-from poc.workflows import SayHello
+from poc.activities.say_hello import say_hello
+from poc.simple_workflow import SimpleWorkflow
 
 
 async def main():
@@ -17,7 +17,7 @@ async def main():
         worker = Worker(
             client,
             task_queue="poc-task-queue",
-            workflows=[SayHello],
+            workflows=[SimpleWorkflow],
             activities=[say_hello],
             activity_executor=activity_executor,
         )

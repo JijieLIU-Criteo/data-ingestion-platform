@@ -7,22 +7,25 @@
 On windows using bash
 
 ```bash
-source poc_env/Scripts/activate
+cd poc
+python -m venv venv
+source venv/Scripts/activate
 pip install -r requirements.txt
 ```
 
-2. Run a workerflow on the local dev server
+2. Run a worker
+
+```bash
+python -m poc.worker
+```
+
+
+3. Run a workerflow on the local dev server
 
 ```bash
 temporal workflow start \
  --task-queue poc-task-queue \
- --type SayHello \
- --input '"555-55-5555"' \
+ --type SimpleWorkflow \
+ --input '"temporal"' \
  --namespace data_ingestion_platform
-```
-
-3. Run a worker
-
-```bash
-python -m poc.worker
 ```
