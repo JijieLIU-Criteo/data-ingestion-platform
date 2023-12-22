@@ -5,7 +5,7 @@ from temporalio.worker import Worker
 
 
 from poc.activities.say_hello import say_hello
-from poc.simple_workflow import SimpleWorkflow
+from poc.workflows.simple_workflow import SimpleWorkflow
 
 
 async def main():
