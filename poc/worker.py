@@ -4,8 +4,13 @@ from temporalio.client import Client
 from temporalio.worker import Worker
 
 
+from poc.activities.run_spark_job import run_spark_job
 from poc.activities.say_hello import say_hello
+
 from poc.workflows.simple_workflow import SimpleWorkflow
+from poc.workflows.spark_workflow import Sparkflow
+
+
 
 
 async def main():
@@ -17,8 +22,8 @@ async def main():
         worker = Worker(
             client,
             task_queue="poc-task-queue",
-            workflows=[SimpleWorkflow],
-            activities=[say_hello],
+            workflows=[SimpleWorkflow, Sparkflow],
+            activities=[say_hello, run_spark_job],
             activity_executor=activity_executor,
         )
         print("Starting worker...")
