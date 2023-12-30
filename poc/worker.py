@@ -4,6 +4,7 @@ from temporalio.client import Client
 from temporalio.worker import Worker
 
 
+from poc.activities.copy_file_to_container import copy_file_to_container
 from poc.activities.run_spark_job import run_spark_job
 from poc.activities.say_hello import say_hello
 
@@ -23,7 +24,7 @@ async def main():
             client,
             task_queue="poc-task-queue",
             workflows=[SimpleWorkflow, Sparkflow],
-            activities=[say_hello, run_spark_job],
+            activities=[say_hello, copy_file_to_container, run_spark_job],
             activity_executor=activity_executor,
         )
         print("Starting worker...")
