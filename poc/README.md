@@ -16,11 +16,19 @@ pip install -r requirements.txt
 2. Run a worker
 
 ```bash
+# under the root
 python -m poc.worker
 ```
 
+3. Run the Spark Infra
 
-3. Run a workerflow on the local dev server
+```bash
+# under the root
+cd infra/spark
+docker compose up -d
+```
+
+4. Run a workerflow on the local dev server
 
 ```bash
 temporal workflow start \

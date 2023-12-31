@@ -13,7 +13,7 @@ with workflow.unsafe.imports_passed_through():
 class Sparkflow:
     @workflow.run
     async def run(self, job_file: str) -> bool:
-        container_name = "spark-spark-1"
+        container_name = "spark-spark-master-1"
         container_path_prefix = "/opt/bitnami/spark"
         job_file_prefix = "spark-jobs"
 
