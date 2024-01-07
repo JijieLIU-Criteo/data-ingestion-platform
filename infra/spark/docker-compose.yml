@@ -10,7 +10,7 @@ services:
     volumes:
       - ./conf/log4j.properties:/opt/bitnami/spark/conf/log4j.properties
     ports:
-      - '8080:8080'
+      - '9090:8080'
       - '7077:7077'
     networks:
       - spark
@@ -36,7 +36,7 @@ services:
       - spark-master
 
   spark-livy:
-    build: ./
+    build: ./images/livy
     command: ["sh", "-c", "/opt/bitnami/livy/bin/livy-server"]
     volumes:
       - ./conf/:/opt/bitnami/livy/conf/
@@ -47,6 +47,16 @@ services:
     depends_on:
       - spark-master
       - spark-worker
+
+  jupyter:
+    build: ./images/jupyter
+    volumes:
+      - ./notebooks:/workspace
+    ports:
+      - '8888:8888'
+    networks:
+      - spark
+
 
 networks:
   spark:
