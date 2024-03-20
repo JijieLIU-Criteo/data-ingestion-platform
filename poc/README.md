@@ -28,8 +28,35 @@ cd infra/spark
 docker compose up -d
 ```
 
-4. Run a workerflow on the local dev server
+# Run a workerflow on the local dev server
 
+
+## Simple workflow
+```bash
+temporal workflow start \
+ --task-queue poc-task-queue \
+ --type SimpleWorkflow \
+ --input '"Hi, testing testing"' \
+ --namespace data_ingestion_platform
+```
+
+## Pauseable workflow
+```bash
+temporal workflow start \
+ --workflow-id "HelloSignal" \
+ --task-queue poc-task-queue \
+ --type PauseableWorkflow \
+ --namespace data_ingestion_platform
+```
+
+```bash
+temporal workflow signal \
+--workflow-id "HelloSignal" \
+--name continue \
+--namespace data_ingestion_platform
+```
+
+## Spark workflow
 ```bash
 temporal workflow start \
  --task-queue poc-task-queue \
